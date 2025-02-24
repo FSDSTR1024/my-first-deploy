@@ -8,9 +8,14 @@ function App() {
   const [res, setRes] = useState();
 
   async function getData() {
-    const url = "https://my-first-deploy-backend.onrender.com/health";
+    const url = `${import.meta.env.VITE_BASE_URL}/health`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          "X-API-MYAPP-KEY":
+            "DJFAÑLSDFJASLDFJASÑDLFJKASÑDLFJKASDÑFLAJSDFÑLAJKSDFÑLASDJKFÑASJL",
+        },
+      });
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
